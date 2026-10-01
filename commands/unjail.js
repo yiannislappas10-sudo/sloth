@@ -52,8 +52,22 @@ module.exports = {
             role.position < me.roles.highest.position
         );
 
+        const blockedRoles = roles.filter(
+          (role) =>
+            role &&
+            !role.managed &&
+            role.id !== interaction.guild.id &&
+            role.position >= me.roles.highest.position
+        );
+
         if (restorableRoles.length) {
           await member.roles.add(restorableRoles, "Restore roles after jail");
+        }
+
+        if (blockedRoles.length) {
+          throw new Error(
+            `I restored the roles I can manage, but these saved roles are above my highest role: ${blockedRoles.map((r) => r.name).join(", ")}. Move Sloth's role above them and run /unjail again.`
+          );
         }
       }
 
