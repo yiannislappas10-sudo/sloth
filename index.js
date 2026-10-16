@@ -18,7 +18,7 @@ const { applyBypassBan, applyPointWarning } = require("./moderation/applyWarn.js
 
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
 });
 
 async function sendPrideEvent(interaction, eventName) {
