@@ -31,6 +31,7 @@ module.exports = {
       action: "🔨 Hackban",
       target: `<@${userId}> (${userId})`,
       moderator: `${interaction.user.tag}`,
+      moderatorId: interaction.user.id,
       reason,
     });
 
