@@ -3,7 +3,7 @@ const { addWarning, scheduleUnban } = require("./store.js");
 const { sendModLog } = require("../utils/modlog.js");
 
 // Extreme / evasion offenses - bypass the point ladder, ban immediately.
-async function applyBypassBan({ client, guild, targetUser, offense, reason, moderatorTag }) {
+async function applyBypassBan({ client, guild, targetUser, offense, reason, moderatorId, moderatorTag }) {
   const permanent = offense.bypass === "permanent_ban";
   await guild.members.ban(targetUser.id, { reason: `${offense.label}: ${reason}` });
 
@@ -11,6 +11,7 @@ async function applyBypassBan({ client, guild, targetUser, offense, reason, mode
     action: permanent ? "🔨 Permanent Ban" : "🔨 Immediate Ban",
     target: `${targetUser.tag} (${targetUser.id})`,
     moderator: moderatorTag,
+    moderatorId,
     reason,
   });
 
