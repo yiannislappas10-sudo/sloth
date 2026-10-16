@@ -1,6 +1,6 @@
 # Warnings Power Rules Bot
 
-Discord rules and moderation bot with department rules, warning points, escalation, moderation logs, timeouts, mutes, jail actions, bans, and automatic temporary-ban expiry.
+Discord moderation bot with warning points, escalation, moderation logs, timeouts, mutes, bans, and automatic temporary-ban expiry.
 
 ## Railway deployment
 
@@ -12,8 +12,6 @@ Discord rules and moderation bot with department rules, warning points, escalati
    - `GUILD_ID`: the target server ID. This makes slash-command updates immediate.
    - `MOD_LOG_CHANNEL_ID`: channel ID for moderation logs.
    - `MUTED_ROLE_ID`: role ID used by `/mute` and `/unmute`.
-   - `JAILED_ROLE_ID`: role ID used by `/jail` and `/unjail`.
-   - `JAIL_CHANNEL_ID`: the only text channel jailed members can see and speak in.
    - `DATA_FILE=/data/moderation.json`: stores warning points and history on the Volume.
 4. In Railway, open the service shell or run the deploy command locally once:
 
@@ -25,15 +23,14 @@ Discord rules and moderation bot with department rules, warning points, escalati
    The deploy command registers all slash commands for `GUILD_ID`.
 5. Railway starts the bot with `npm start`.
 
-The Discord bot must be invited with the `bot` and `applications.commands` scopes. Give it the permissions needed for the moderation actions you use, including View Channels, Send Messages, Moderate Members, Ban Members, Manage Roles, and Read Message History. The bot's role must be above the muted and jailed roles.
+The Discord bot must be invited with the `bot` and `applications.commands` scopes. Give it the permissions needed for the moderation actions you use, including View Channels, Send Messages, Moderate Members, Ban Members, and Read Message History. The bot's role must be above the muted role.
 
 ## Commands
 
-Moderation: `/warn`, `/warnings`, `/clearwarnings`, `/timeout`, `/mute`, `/unmute`, `/jail`, `/unjail`, `/ban`, `/unban`, and `/hackban`.
+Moderation: `/warn`, `/warnings`, `/clearwarnings`, `/timeout`, `/mute`, `/unmute`, `/ban`, `/unban`, and `/hackban`.
 
 **Rules are not handled by Sloth.** General, Security, Research, Technical, and Janitor rules are handled by the separate **Wraith / General-Rules** bot.
 
-Jailing removes assignable roles, saves them in `DATA_FILE`, applies member-specific restrictions to text channels, and restores the saved roles when `/unjail` is used. The bot needs Manage Roles and Manage Channels, and its role must be above the jailed role and the roles it needs to remove.
 
 All moderation slash commands are visible in the command list. Moderation commands still require the appropriate permission when used; visibility does not grant access.
 
