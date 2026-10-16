@@ -155,6 +155,7 @@ client.on("interactionCreate", async (interaction) => {
             targetUser,
             offense,
             reason: pendingAction.reason,
+            moderatorId: pendingAction.moderatorId,
             moderatorTag: pendingAction.moderatorTag,
           });
         } else {
