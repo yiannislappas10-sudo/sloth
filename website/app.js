@@ -37,5 +37,5 @@ if(a==="save-role"){const roleId=$("#role-choice").value;if(!roleId)throw Error(
 if(a==="save-member"){const userId=$("#member-choice").value.trim();await api("/api/access",{method:"PUT",body:JSON.stringify({type:"member",userId,permissions:checked("#member-checks")})});toast("Member permissions saved.");return;}
 }catch(e){toast(e.message,true)}}
 $(".side-link").forEach(b=>b.addEventListener("click",()=>openView(b.dataset.view)));
-$("#brand-home")?.addEventListener("click",e=>{if(location.pathname!=="/"){e.preventDefault();location.href="/";}});
+$("#brand-home")?.addEventListener("click",e=>{if(location.pathname!=="/"||location.search!=="?home=1"){e.preventDefault();location.href="/?home=1";}});
 boot();
