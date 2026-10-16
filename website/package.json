@@ -1,0 +1,13 @@
+{
+  "name": "haven-institute-sloth-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Haven Institute Sloth moderation website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
