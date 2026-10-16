@@ -42,4 +42,4 @@ In Railway, open the `Warnings-Power-` service, select **Variables**, click **Ne
 DATA_FILE=/data/moderation.json
 ```
 
-This variable tells the bot to store warning history and saved jail roles on the Railway Volume. The Volume must be attached to the service with mount path `/data`. Do not put this in Discord or in a source-code file; it belongs in Railway Variables.
+This variable tells the bot to store warning history on the Railway Volume. The Volume must be attached to the service with mount path `/data`. Do not put this in Discord or in a source-code file; it belongs in Railway Variables.
