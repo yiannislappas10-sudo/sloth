@@ -313,3 +313,9 @@ textarea,
   border-color:#a1a8b4;
   background:linear-gradient(145deg,#414752 0%,#202329 78%);
 }
+
+
+/* Separate homepage and dashboard navigation */
+.site-nav{display:flex;align-items:center;gap:8px;margin-left:auto}
+.site-nav .nav-cta{white-space:nowrap;text-decoration:none;font-size:10px}
+@media(max-width:680px){.site-nav{gap:5px}.site-nav .nav-cta{padding:10px 9px;font-size:9px}}
