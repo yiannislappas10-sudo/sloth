@@ -1,7 +1,13 @@
 const { EmbedBuilder } = require("discord.js");
 const { MOD_LOG_CHANNEL_ID } = require("../moderation/config.js");
 
-async function sendModLog(client, { action, target, moderator, reason, extra, category = "moderation" }) {
+async function sendModLog(client, { action, target, moderator, moderatorId, reason, extra, category }) {
+  const actionText = String(action || "moderation.action");
+  const resolvedCategory = category || (/warn|warning|point/i.test(actionText) ? "warnings" : "moderation");
+  const targetText = String(target || "");
+  const targetId = String(target?.id || targetText.match(/\d{17,20}/)?.[0] || targetText);
+  const actorId = String(moderatorId || moderator?.id || moderator || "system");
+  const actorName = String(moderator?.tag || moderator?.username || moderator || "System");
   const websiteUrl = (process.env.WEBSITE_AUDIT_URL || "").replace(/\/$/, "");
   const relaySecret = process.env.SLOTH_WEBHOOK_SECRET || "";
   if (websiteUrl && relaySecret) {
@@ -10,12 +16,12 @@ async function sendModLog(client, { action, target, moderator, reason, extra, ca
         method: "POST",
         headers: { "Content-Type": "application/json", "X-Sloth-Webhook-Secret": relaySecret },
         body: JSON.stringify({
-          category,
-          actor: String(moderator?.id || moderator || "system"),
-          actorName: String(moderator?.tag || moderator?.username || moderator || "System"),
-          target: String(target?.id || target || ""),
-          event: String(action || "moderation.action"),
-          details: { reason: reason || "No reason provided", ...(extra ? { extra } : {}) }
+          category: resolvedCategory,
+          actor: actorId,
+          actorName,
+          target: targetId,
+          event: actionText,
+          details: { reason: reason || "No reason provided", targetLabel: targetText, ...(extra ? { extra } : {}) }
         })
       });
       if (response.ok) return;
@@ -25,17 +31,16 @@ async function sendModLog(client, { action, target, moderator, reason, extra, ca
     }
   }
 
-  // Safe fallback while the website audit relay is not configured or unavailable.
   if (!MOD_LOG_CHANNEL_ID) return;
   try {
     const channel = await client.channels.fetch(MOD_LOG_CHANNEL_ID);
     if (!channel) return;
     const embed = new EmbedBuilder()
       .setColor(0x000000)
-      .setTitle(action || "Moderation action")
+      .setTitle(actionText)
       .addFields(
-        { name: "Target", value: String(target || "Unknown"), inline: true },
-        { name: "Moderator", value: String(moderator || "System"), inline: true },
+        { name: "Target", value: targetText || "Unknown", inline: true },
+        { name: "Moderator", value: actorName + " (" + actorId + ")", inline: true },
         { name: "Reason", value: reason || "No reason provided" }
       )
       .setTimestamp();
