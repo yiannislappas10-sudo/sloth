@@ -57,6 +57,7 @@ module.exports = {
       action: "⏱️ Timeout",
       target: `${targetUser.tag} (${targetUser.id})`,
       moderator: `${interaction.user.tag}`,
+      moderatorId: interaction.user.id,
       reason,
       extra: [{ name: "Duration", value: durationKey, inline: true }],
     });
