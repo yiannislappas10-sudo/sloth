@@ -41,6 +41,7 @@ module.exports = {
       action: "🔇 Mute",
       target: `${targetUser.tag} (${targetUser.id})`,
       moderator: `${interaction.user.tag}`,
+      moderatorId: interaction.user.id,
       reason,
     });
 
