@@ -36,5 +36,6 @@ if(a==="grant-user"){const userId=$("#grant-user").value.trim(),enabled=$("#gran
 if(a==="save-role"){const roleId=$("#role-choice").value;if(!roleId)throw Error("Choose a Discord role first.");await api("/api/access",{method:"PUT",body:JSON.stringify({type:"role",roleId,permissions:checked("#role-checks")})});toast("Role permissions saved.");return;}
 if(a==="save-member"){const userId=$("#member-choice").value.trim();await api("/api/access",{method:"PUT",body:JSON.stringify({type:"member",userId,permissions:checked("#member-checks")})});toast("Member permissions saved.");return;}
 }catch(e){toast(e.message,true)}}
-$$(".side-link").forEach(b=>b.addEventListener("click",()=>openView(b.dataset.view)));
+$(".side-link").forEach(b=>b.addEventListener("click",()=>openView(b.dataset.view)));
+$("#brand-home")?.addEventListener("click",e=>{if(!$("#app-shell").classList.contains("hidden")){e.preventDefault();$("#app-shell").classList.add("hidden");$("#landing").classList.remove("hidden");$("#notice").classList.add("hidden");window.scrollTo({top:0,behavior:"smooth"});}});
 boot();
