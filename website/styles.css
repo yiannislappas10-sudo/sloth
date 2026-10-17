@@ -319,3 +319,23 @@ textarea,
 .site-nav{display:flex;align-items:center;gap:8px;margin-left:auto}
 .site-nav .nav-cta{white-space:nowrap;text-decoration:none;font-size:10px}
 @media(max-width:680px){.site-nav{gap:5px}.site-nav .nav-cta{padding:10px 9px;font-size:9px}}
+
+
+/* Haven Institute staff operations */
+.staff-card-list{display:grid;gap:12px}
+.staff-record{border:1px solid #30343c;background:linear-gradient(155deg,#14161a,#0e0f12);border-radius:9px;padding:17px;min-width:0}
+.staff-record h3{font-size:15px;line-height:1.4;margin:0;font-weight:650;color:#f0f1f4}
+.staff-record p{color:#c0c4cc;line-height:1.65;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0}
+.staff-record-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.staff-record-head small,.staff-record small{display:block;color:#8e949f;font-size:11px;margin-top:5px}
+.staff-record-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid #282b31;padding-top:12px;margin-top:14px}
+.inline-actions{display:flex;gap:6px;flex-wrap:wrap}
+.inline-actions .small-button{font-size:10px;padding:7px 9px}
+.inline-actions .small-button:disabled{opacity:.45;cursor:default}
+.staff-message{font-size:14px!important}
+.staff-response{border-left:2px solid #8b929e;padding:3px 0 3px 12px;margin-top:12px}
+.staff-response p{margin-bottom:0}
+.request-review{margin-top:16px}
+.request-review label{display:grid;gap:7px;color:#aeb3bd;font-size:12px}
+#directory-results{margin-top:18px}
+@media(max-width:650px){.staff-record{padding:13px}.staff-record-foot{align-items:flex-start}.inline-actions{width:100%}.inline-actions .small-button{flex:1}}
