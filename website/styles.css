@@ -339,3 +339,21 @@ textarea,
 .request-review label{display:grid;gap:7px;color:#aeb3bd;font-size:12px}
 #directory-results{margin-top:18px}
 @media(max-width:650px){.staff-record{padding:13px}.staff-record-foot{align-items:flex-start}.inline-actions{width:100%}.inline-actions .small-button{flex:1}}
+
+
+/* Private assignment responses and supervisor progress-only cards */
+.task-instructions{margin:16px 0;padding:13px 14px;border:1px solid #353941;border-left:2px solid #9aa2ae;background:#101216;border-radius:7px}
+.task-instructions>b,.task-update-history>b{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#aeb4be}
+.task-instructions p{margin:8px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;color:#d0d3d9;line-height:1.65;font-size:13px}
+.task-progress-form{display:grid;gap:14px;margin-top:15px;padding-top:14px;border-top:1px solid #2a2d33}
+.task-progress-form label{display:grid;gap:7px;color:#b7bbc4;font-size:12px}
+.task-progress-form select,.task-progress-form textarea{width:100%;box-sizing:border-box}
+.task-progress-form textarea{min-height:76px;resize:vertical}
+.task-progress-summary{margin-top:14px;padding:13px 14px;border:1px solid #30343b;background:#101216;border-radius:7px}
+.task-progress-summary>small{font-size:11px;color:#9aa0aa}
+.task-progress-summary p{margin:9px 0;color:#d1d4da;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;font-size:13px}
+.task-update-history{margin-top:16px;padding-top:13px;border-top:1px solid #292c32}
+.task-update{padding:11px 0;border-bottom:1px solid #24272d}
+.task-update:last-child{border-bottom:0}
+.task-update small{font-size:10px;color:#858b96}
+.task-update p{margin:8px 0 0;color:#c4c8d0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.55}
