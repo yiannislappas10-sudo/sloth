@@ -37,7 +37,7 @@ function wireView(){const box=$("#view-content");box.querySelectorAll("[data-vie
 box.querySelectorAll("[data-task-status]").forEach(b=>b.onclick=async()=>{try{await api("/api/tasks",{method:"PATCH",body:JSON.stringify({id:b.dataset.taskId,status:b.dataset.taskStatus})});await openView("tasks");toast("Task progress saved.");}catch(e){toast(e.message,true);}});
 box.querySelectorAll("[data-review-request]").forEach(b=>b.onclick=async()=>{try{const id=b.dataset.reviewRequest;await api("/api/requests",{method:"PATCH",body:JSON.stringify({id,status:$("#request-status-"+id).value,response:$("#request-response-"+id).value})});await openView("requests");toast("Request review saved.");}catch(e){toast(e.message,true);}});
 const dq=$("#directory-query");if(dq)dq.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();action("search-directory");}});
-}}
+}
 function filterLogs(){const q=($("#log-search").value||"").toLowerCase(),f=$("#log-filter").value;const rows=logs.filter(x=>(!f||x.event===f)&&JSON.stringify(x).toLowerCase().includes(q));$("#logs-table").innerHTML=recentTable(rows)}
 async function action(a){try{
 if(a==="create-task"){const title=$("#task-title").value.trim();if(!title)throw Error("Enter a task title.");const assigneeId=$("#task-assignee").value.trim();await api("/api/tasks",{method:"POST",body:JSON.stringify({title,assigneeId,assigneeName:assigneeId,department:$("#task-department").value.trim()||"General",dueAt:$("#task-due").value,description:$("#task-description").value.trim()})});await openView("tasks");toast("Task created and saved.");return;}
